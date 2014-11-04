@@ -13,7 +13,7 @@ namespace MobileWebApp.Controllers
         {
             return new HttpResponseMessage()
             {
-                Content = new StringContent("GET: Test message - Remote")
+                Content = new StringContent("GET: Test message - Remote 1")
             };
         }
 
@@ -21,7 +21,7 @@ namespace MobileWebApp.Controllers
         {
             return new HttpResponseMessage()
             {
-                Content = new StringContent("POST: Test message - Remote")
+                Content = new StringContent("POST: Test message - Remote 1")
             };
         }
 
@@ -29,7 +29,7 @@ namespace MobileWebApp.Controllers
         {
             return new HttpResponseMessage()
             {
-                Content = new StringContent("PUT: Test message - Remote")
+                Content = new StringContent("PUT: Test message - Remote 1")
             };
         }
     }
