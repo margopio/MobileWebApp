@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using MobileWebApp.Models;
 using System.Web.Http.Cors;
+using Microsoft.AspNet.SignalR;
 
 namespace MobileWebApp.Controllers
 {
@@ -48,6 +49,11 @@ namespace MobileWebApp.Controllers
             userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
             userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
             _repositoryUserRegister.Add(userRegisterTo);
+
+            //
+            var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
+            ctx.Clients.All.greetings("reload");
+            //
         }
 
         // PUT api/<controller>/5

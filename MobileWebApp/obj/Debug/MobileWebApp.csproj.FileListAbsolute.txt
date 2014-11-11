@@ -27,3 +27,16 @@ C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\System.Web.WebPages.
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.dll
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.pdb
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Owin.dll
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.xml
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.Security.xml
