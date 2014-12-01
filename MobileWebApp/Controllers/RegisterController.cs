@@ -34,7 +34,7 @@ namespace MobileWebApp.Controllers
 
         // POST api/<controller>
         //public void Post([FromBody]string value)
-        public void Post(UserRegister userRegisterFrom)
+        public UserRegister Post(UserRegister userRegisterFrom)
         {
             UserRegister userRegisterTo = new UserRegister();
             userRegisterTo.UserRegisterId = Guid.NewGuid();
@@ -54,11 +54,43 @@ namespace MobileWebApp.Controllers
             var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
             ctx.Clients.All.greetings("reload");
             //
+
+            return userRegisterTo;
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        //public void Put(int id, [FromBody]string value)
+        public UserRegister Put(UserRegister userRegisterFrom)
         {
+            UserRegister userRegisterTo = new UserRegister();
+            var userId = userRegisterFrom.UserRegisterId;            
+            if (userId != Guid.Empty)
+            {
+                var user = _repositoryUserRegister.GetUserRegister(userId);
+                if (user != null)
+                {
+                    _repositoryUserRegister.Delete(userId);                    
+                    userRegisterTo.UserRegisterId = userId;
+                    userRegisterTo.FirstName = userRegisterFrom.FirstName;
+                    userRegisterTo.LastName = userRegisterFrom.LastName;
+                    userRegisterTo.Gender = userRegisterFrom.Gender;
+                    userRegisterTo.Birthday = userRegisterFrom.Birthday;
+                    userRegisterTo.Phone = userRegisterFrom.Phone;
+                    userRegisterTo.EmailAddress = userRegisterFrom.EmailAddress;
+                    userRegisterTo.UserName = userRegisterFrom.UserName;
+                    userRegisterTo.UserPassword = userRegisterFrom.UserPassword;
+                    userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
+                    userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
+                    _repositoryUserRegister.Add(userRegisterTo);
+
+                    //
+                    var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
+                    ctx.Clients.All.greetings("reload");
+                    //
+                }                
+            }
+
+            return userRegisterTo;
         }
 
         // DELETE api/<controller>/5
