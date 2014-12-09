@@ -32,9 +32,7 @@ namespace MobileWebApp.Controllers
             return "Testing 123";
         }
 
-        // POST api/<controller>
-        //public void Post([FromBody]string value)
-        public UserRegister Post(UserRegister userRegisterFrom)
+        public HttpResponseMessage Post(UserRegister userRegisterFrom)
         {
             UserRegister userRegisterTo = new UserRegister();
             userRegisterTo.UserRegisterId = Guid.NewGuid();
@@ -48,19 +46,25 @@ namespace MobileWebApp.Controllers
             userRegisterTo.UserPassword = userRegisterFrom.UserPassword;
             userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
             userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
-            _repositoryUserRegister.Add(userRegisterTo);
+            var status = _repositoryUserRegister.Add(userRegisterTo);
 
-            //
-            var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
-            ctx.Clients.All.greetings("reload");
-            //
+            if (status)
+            {
+                var msg = new HttpResponseMessage(HttpStatusCode.Created);
+                msg.Headers.Location = new Uri(Request.RequestUri + userRegisterTo.UserRegisterId.ToString());
+                msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString());
 
-            return userRegisterTo;
-        }
+                //
+                var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
+                ctx.Clients.All.greetings("reload");
+                //
 
-        // PUT api/<controller>/5
-        //public void Put(int id, [FromBody]string value)
-        public UserRegister Put(UserRegister userRegisterFrom)
+                return msg;
+            }
+            throw new HttpResponseException(HttpStatusCode.Conflict);          
+        }        
+
+        public HttpResponseMessage Put(UserRegister userRegisterFrom)
         {
             UserRegister userRegisterTo = new UserRegister();
             var userId = userRegisterFrom.UserRegisterId;            
@@ -81,16 +85,26 @@ namespace MobileWebApp.Controllers
                     userRegisterTo.UserPassword = userRegisterFrom.UserPassword;
                     userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
                     userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
-                    _repositoryUserRegister.Add(userRegisterTo);
+                    var status = _repositoryUserRegister.Add(userRegisterTo);
 
-                    //
-                    var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
-                    ctx.Clients.All.greetings("reload");
-                    //
+                    if (status)
+                    {
+                        var msg = new HttpResponseMessage(HttpStatusCode.OK);
+                        msg.Headers.Location = new Uri(Request.RequestUri + userRegisterTo.UserRegisterId.ToString());
+                        msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString());
+
+                        //
+                        var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
+                        ctx.Clients.All.greetings("reload");
+                        //
+
+                        return msg;
+                    }
+                    throw new HttpResponseException(HttpStatusCode.NotFound);  
                 }                
             }
 
-            return userRegisterTo;
+            throw new HttpResponseException(HttpStatusCode.NotFound); 
         }
 
         // DELETE api/<controller>/5

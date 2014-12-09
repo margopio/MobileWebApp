@@ -40,3 +40,4 @@ C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.xml
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\Microsoft.Owin.Security.xml
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\MobileWebApp.dll.config
+C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.csprojResolveAssemblyReference.cache

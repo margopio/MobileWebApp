@@ -12,6 +12,13 @@ namespace MobileWebApp.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
+        private UserRegisterRepository _repositoryUserRegister;
+
+        public LoginController()
+        {
+            _repositoryUserRegister = new UserRegisterRepository();
+        }
+        
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -22,13 +29,19 @@ namespace MobileWebApp.Controllers
         public string Get(int id)
         {
             return "Testing 123";
-        }
+        }        
 
-        // POST api/<controller>
-        //public void Post(UserLogin user)
-        public UserLogin Post(UserLogin user)
+        public HttpResponseMessage Post(UserLogin user)
         {
-            return user;
+            var userFound = _repositoryUserRegister.GetUserRegisters().FirstOrDefault(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword);
+            if (userFound != null)
+            {
+                var msg = new HttpResponseMessage(HttpStatusCode.Created);
+                msg.Headers.Location = new Uri(Request.RequestUri + userFound.UserRegisterId.ToString());
+                msg.Content = new StringContent(userFound.UserRegisterId.ToString());
+                return msg;
+            }
+            throw new HttpResponseException(HttpStatusCode.Conflict);
         }
 
         // PUT api/<controller>/5
