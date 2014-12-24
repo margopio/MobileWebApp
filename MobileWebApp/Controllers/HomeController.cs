@@ -30,7 +30,7 @@ namespace MobileWebApp.Controllers
                 userRegister.FirstName = "First 1";
                 userRegister.LastName = "Last 1";
                 userRegister.Gender = "Male";
-                userRegister.Birthday = "1/1-2001";
+                userRegister.Birthday = "1/1/2001";
                 userRegister.Phone = "(007) 007-1001";
                 userRegister.UserName = "user123";
                 userRegister.UserPassword = "pass123";
