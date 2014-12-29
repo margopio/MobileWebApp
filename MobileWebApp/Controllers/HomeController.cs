@@ -30,7 +30,9 @@ namespace MobileWebApp.Controllers
                 userRegister.FirstName = "First 1";
                 userRegister.LastName = "Last 1";
                 userRegister.Gender = "Male";
-                userRegister.Birthday = "1/1/2001";
+                //userRegister.Birthday = "1/1/2001";
+                userRegister.Month = "January";
+                userRegister.Day = "1";
                 userRegister.Phone = "(007) 007-1001";
                 userRegister.UserName = "user123";
                 userRegister.UserPassword = "pass123";
@@ -43,7 +45,9 @@ namespace MobileWebApp.Controllers
                 userRegister.FirstName = "First 2";
                 userRegister.LastName = "Last 2";
                 userRegister.Gender = "Female";
-                userRegister.Birthday = "2/2/2002";
+                //userRegister.Birthday = "2/2/2002";
+                userRegister.Month = "February";
+                userRegister.Day = "2";
                 userRegister.Phone = "(007) 007-1002";
                 userRegister.UserName = "user234";
                 userRegister.UserPassword = "pass234";
@@ -61,7 +65,9 @@ namespace MobileWebApp.Controllers
                                              FirstName = u.FirstName,
                                              LastName = u.LastName,
                                              Gender = u.Gender,
-                                             Birthday = u.Birthday,
+                                             //Birthday = u.Birthday,
+                                             Month = u.Month,
+                                             Day = u.Day,
                                              Phone = u.Phone,
                                              UserName = u.UserName,
                                              UserPassword = u.UserPassword,

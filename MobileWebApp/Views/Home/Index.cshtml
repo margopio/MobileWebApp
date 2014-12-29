@@ -9,12 +9,12 @@
     <div class="panel-heading">List of Registered Users</div>
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>User Id</th>
+            <tr>                
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>
-                <th>Birthday</th>
+                <th>Month of Birth</th>
+                <th>Day of Birth</th>
                 <th>Phone</th>
                 <th>Username</th>
                 <th>Password</th>
@@ -24,12 +24,12 @@
             </tr>
         </thead>
         @foreach (var item in Model.UserRegisters) {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.UserRegisterId)</td>
+            <tr>                
                 <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
                 <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Gender)</td>
-                <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Month)</td>
+                <td>@Html.DisplayFor(modelItem => item.Day)</td>
                 <td>@Html.DisplayFor(modelItem => item.Phone)</td>
                 <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                 <td>@Html.DisplayFor(modelItem => item.UserPassword)</td>

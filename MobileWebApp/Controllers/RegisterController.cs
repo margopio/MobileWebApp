@@ -39,7 +39,9 @@ namespace MobileWebApp.Controllers
             userRegisterTo.FirstName = userRegisterFrom.FirstName;
             userRegisterTo.LastName = userRegisterFrom.LastName;
             userRegisterTo.Gender = userRegisterFrom.Gender;
-            userRegisterTo.Birthday = userRegisterFrom.Birthday;
+            //userRegisterTo.Birthday = userRegisterFrom.Birthday;
+            userRegisterTo.Month = userRegisterFrom.Month;
+            userRegisterTo.Day = userRegisterFrom.Day;
             userRegisterTo.Phone = userRegisterFrom.Phone;
             userRegisterTo.EmailAddress = userRegisterFrom.EmailAddress;
             userRegisterTo.UserName = userRegisterFrom.UserName;
@@ -78,7 +80,7 @@ namespace MobileWebApp.Controllers
                     userRegisterTo.FirstName = userRegisterFrom.FirstName;
                     userRegisterTo.LastName = userRegisterFrom.LastName;
                     userRegisterTo.Gender = userRegisterFrom.Gender;
-                    userRegisterTo.Birthday = userRegisterFrom.Birthday;
+                    //userRegisterTo.Birthday = userRegisterFrom.Birthday;
                     userRegisterTo.Phone = userRegisterFrom.Phone;
                     userRegisterTo.EmailAddress = userRegisterFrom.EmailAddress;
                     userRegisterTo.UserName = userRegisterFrom.UserName;
