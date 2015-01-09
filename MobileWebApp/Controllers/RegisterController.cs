@@ -38,23 +38,27 @@ namespace MobileWebApp.Controllers
             userRegisterTo.UserRegisterId = Guid.NewGuid();
             userRegisterTo.FirstName = userRegisterFrom.FirstName;
             userRegisterTo.LastName = userRegisterFrom.LastName;
-            userRegisterTo.Gender = userRegisterFrom.Gender;
-            //userRegisterTo.Birthday = userRegisterFrom.Birthday;
-            userRegisterTo.Month = userRegisterFrom.Month;
-            userRegisterTo.Day = userRegisterFrom.Day;
+            //userRegisterTo.Gender = userRegisterFrom.Gender;
+            userRegisterTo.Birthday = userRegisterFrom.Birthday;
+            //userRegisterTo.Month = userRegisterFrom.Month;
+            //userRegisterTo.Day = userRegisterFrom.Day;
             userRegisterTo.Phone = userRegisterFrom.Phone;
+            userRegisterTo.PhoneType = userRegisterFrom.PhoneType;
+            userRegisterTo.TextMsg = userRegisterFrom.TextMsg;            
             userRegisterTo.EmailAddress = userRegisterFrom.EmailAddress;
-            userRegisterTo.UserName = userRegisterFrom.UserName;
+            //userRegisterTo.UserName = userRegisterFrom.UserName;
             userRegisterTo.UserPassword = userRegisterFrom.UserPassword;
-            userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
-            userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
+            //userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
+            //userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
             var status = _repositoryUserRegister.Add(userRegisterTo);
 
             if (status)
             {
                 var msg = new HttpResponseMessage(HttpStatusCode.Created);
                 msg.Headers.Location = new Uri(Request.RequestUri + userRegisterTo.UserRegisterId.ToString());
-                msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString());
+                //msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString());
+
+                msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString() + "," + userRegisterTo.FirstName + "," + userRegisterTo.LastName);
 
                 //
                 var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
@@ -79,21 +83,25 @@ namespace MobileWebApp.Controllers
                     userRegisterTo.UserRegisterId = userId;
                     userRegisterTo.FirstName = userRegisterFrom.FirstName;
                     userRegisterTo.LastName = userRegisterFrom.LastName;
-                    userRegisterTo.Gender = userRegisterFrom.Gender;
-                    //userRegisterTo.Birthday = userRegisterFrom.Birthday;
+                    //userRegisterTo.Gender = userRegisterFrom.Gender;
+                    userRegisterTo.Birthday = userRegisterFrom.Birthday;
                     userRegisterTo.Phone = userRegisterFrom.Phone;
+                    userRegisterTo.PhoneType = userRegisterFrom.PhoneType;
+                    userRegisterTo.TextMsg = userRegisterFrom.TextMsg;
                     userRegisterTo.EmailAddress = userRegisterFrom.EmailAddress;
-                    userRegisterTo.UserName = userRegisterFrom.UserName;
+                    //userRegisterTo.UserName = userRegisterFrom.UserName;
                     userRegisterTo.UserPassword = userRegisterFrom.UserPassword;
-                    userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
-                    userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
+                    //userRegisterTo.FavoriteFood = userRegisterFrom.FavoriteFood;
+                    //userRegisterTo.FavoriteDrink = userRegisterFrom.FavoriteDrink;
                     var status = _repositoryUserRegister.Add(userRegisterTo);
 
                     if (status)
                     {
                         var msg = new HttpResponseMessage(HttpStatusCode.OK);
                         msg.Headers.Location = new Uri(Request.RequestUri + userRegisterTo.UserRegisterId.ToString());
-                        msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString());
+                        //msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString());
+
+                        msg.Content = new StringContent(userRegisterTo.UserRegisterId.ToString() + "," + userRegisterTo.FirstName + "," + userRegisterTo.LastName);
 
                         //
                         var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();

@@ -33,12 +33,20 @@ namespace MobileWebApp.Controllers
 
         public HttpResponseMessage Post(UserLogin user)
         {
-            var userFound = _repositoryUserRegister.GetUserRegisters().FirstOrDefault(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword);
+            //var userFound = _repositoryUserRegister.GetUserRegisters().FirstOrDefault(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword);
+            var userFound = _repositoryUserRegister.GetUserRegisters().FirstOrDefault(u => u.EmailAddress == user.EmailAddress && u.UserPassword == user.UserPassword);
             if (userFound != null)
             {
                 var msg = new HttpResponseMessage(HttpStatusCode.Created);
                 msg.Headers.Location = new Uri(Request.RequestUri + userFound.UserRegisterId.ToString());
-                msg.Content = new StringContent(userFound.UserRegisterId.ToString());
+                //msg.Content = new StringContent(userFound.UserRegisterId.ToString());
+
+                //char[] splitchar = { '-' };
+                //string[] result = userFound.UserRegisterId.ToString().Split(splitchar);
+                //msg.Content = new StringContent(result[0] + "," + userFound.FirstName + "," + userFound.LastName);
+
+                msg.Content = new StringContent(userFound.UserRegisterId.ToString() + "," + userFound.FirstName + "," + userFound.LastName);
+
                 return msg;
             }
             throw new HttpResponseException(HttpStatusCode.Conflict);
