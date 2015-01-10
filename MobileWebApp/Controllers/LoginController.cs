@@ -26,10 +26,7 @@ namespace MobileWebApp.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "Testing 123";
-        }        
+        //
 
         public HttpResponseMessage Post(UserLogin user)
         {
@@ -53,13 +50,13 @@ namespace MobileWebApp.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
