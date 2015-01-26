@@ -8,10 +8,10 @@ namespace MobileWebApp.Models
 {
     public interface IUserRegisterRepository
     {
-        bool Add(UserRegister userRegister);
+        bool Add(AddRegistration userRegister);
         bool Delete(Guid id);
-        UserRegister GetUserRegister(Guid id);
-        IEnumerable<UserRegister> GetUserRegisters();
+        AddRegistration GetUserRegister(Guid id);
+        IEnumerable<AddRegistration> GetUserRegisters();
         void ClearAll();
     }
 }

@@ -24,11 +24,22 @@
             @foreach (var item in Model.UserRegisters)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Firstname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Lastname)</td>
                     <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PhoneType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>                    
+                    @if (item.DeviceType == 1)
+                    {
+                        <td>Home</td>
+                    }
+                    else if (item.DeviceType == 2)
+                    {
+                        <td>Work</td>
+                    }
+                    else
+                    {
+                        <td>Mobile</td>
+                    }
                     @if (item.TextMsg == "True")
                     {
                         <td>Yes</td>
@@ -37,8 +48,8 @@
                     {
                         <td>No</td>
                     }
-                    <td>@Html.DisplayFor(modelItem => item.UserPassword)</td>
-                    <td>@Html.DisplayFor(modelItem => item.EmailAddress)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
                 </tr>
             }
         </table>

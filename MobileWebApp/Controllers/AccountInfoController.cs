@@ -29,14 +29,14 @@ namespace MobileWebApp.Controllers
                 {
                     return new
                     {
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
+                        FirstName = user.Firstname,
+                        LastName = user.Lastname,
                         Birthday = user.Birthday,
                         Phone = user.Phone,
-                        PhoneType = user.PhoneType,
+                        PhoneType = user.DeviceType,
                         TextMsg = user.TextMsg,
-                        EmailAddress = user.EmailAddress,
-                        UserPassword = user.UserPassword
+                        EmailAddress = user.Email,
+                        UserPassword = user.Password
                     };                   
                 }
                 throw new HttpResponseException(HttpStatusCode.NotFound);

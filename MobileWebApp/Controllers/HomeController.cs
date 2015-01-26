@@ -24,62 +24,44 @@ namespace MobileWebApp.Controllers
             if (!_repositoryUserRegister.GetUserRegisters().Any())
             {
                 _repositoryUserRegister.ClearAll();
-                UserRegister userRegister = new UserRegister();
-                userRegister.UserRegisterId = Guid.NewGuid();
-                userRegister.FirstName = "First 1";
-                userRegister.LastName = "Last 1";
-                //userRegister.Gender = "Male";
-                userRegister.Birthday = "01/01";
-                //userRegister.Month = "January";
-                //userRegister.Day = "1";
+                AddRegistration userRegister = new AddRegistration();
+                userRegister.UserId = Guid.NewGuid();
+                userRegister.Firstname = "First 1";
+                userRegister.Lastname = "Last 1";                
+                userRegister.Birthday = "01/01";                
                 userRegister.Phone = "(007) 007-1001";
-                userRegister.PhoneType = "Work";
-                userRegister.TextMsg = "True";
-                //userRegister.UserName = "user123";
-                userRegister.UserPassword = "pass123";
-                userRegister.EmailAddress = "user123@gmail.com";
-                //userRegister.FavoriteFood = "paella 1";
-                //userRegister.FavoriteDrink = "coffee 1";
+                userRegister.DeviceType = 2;
+                userRegister.TextMsg = "True";                
+                userRegister.Password = "pass123";
+                userRegister.Email = "user123@gmail.com";              
                 _repositoryUserRegister.Add(userRegister);
-                userRegister = new UserRegister();
-                userRegister.UserRegisterId = Guid.NewGuid();
-                userRegister.FirstName = "First 2";
-                userRegister.LastName = "Last 2";
-                //userRegister.Gender = "Female";
-                userRegister.Birthday = "02/02";
-                //userRegister.Month = "February";
-                //userRegister.Day = "2";
+                userRegister = new AddRegistration();
+                userRegister.UserId = Guid.NewGuid();
+                userRegister.Firstname = "First 2";
+                userRegister.Lastname = "Last 2";                
+                userRegister.Birthday = "02/02";            
                 userRegister.Phone = "(007) 007-1002";
-                userRegister.PhoneType = "Home";
-                userRegister.TextMsg = "False";
-                //userRegister.UserName = "user234";
-                userRegister.UserPassword = "pass234";
-                userRegister.EmailAddress = "user234@gmail.com";
-                //userRegister.FavoriteFood = "paella 2";
-                //userRegister.FavoriteDrink = "coffee 2";
+                userRegister.DeviceType = 1;
+                userRegister.TextMsg = "False";                
+                userRegister.Password = "pass234";
+                userRegister.Email = "user234@gmail.com";               
                 _repositoryUserRegister.Add(userRegister);
             }
             ListUserRegistersViewModel userRegisterViewModel = new ListUserRegistersViewModel();
             userRegisterViewModel.UserRegisters = (from u in _repositoryUserRegister.GetUserRegisters()
                                          //orderby u.UserName
-                                         orderby u.EmailAddress
-                                         select new UserRegister
+                                         orderby u.Email
+                                         select new AddRegistration
                                          {
-                                             UserRegisterId = u.UserRegisterId,
-                                             FirstName = u.FirstName,
-                                             LastName = u.LastName,
-                                             //Gender = u.Gender,
-                                             Birthday = u.Birthday,
-                                             //Month = u.Month,
-                                             //Day = u.Day,
+                                             UserId = u.UserId,
+                                             Firstname = u.Firstname,
+                                             Lastname = u.Lastname,                                             
+                                             Birthday = u.Birthday,                                            
                                              Phone = u.Phone,
-                                             PhoneType = u.PhoneType,
-                                             TextMsg = u.TextMsg,
-                                             //UserName = u.UserName,
-                                             UserPassword = u.UserPassword,
-                                             EmailAddress = u.EmailAddress,
-                                             //FavoriteFood = u.FavoriteFood,
-                                             //FavoriteDrink = u.FavoriteDrink
+                                             DeviceType = u.DeviceType,
+                                             TextMsg = u.TextMsg,                                             
+                                             Password = u.Password,
+                                             Email = u.Email                                          
                                          }).ToList();
             //
 

@@ -14,7 +14,7 @@ namespace MobileWebApp.Models
             _instance = InMemoryUserRegister.GetInstance();
         }
 
-        public bool Add(UserRegister userRegister)
+        public bool Add(AddRegistration userRegister)
         {
             var flag = false;
             try
@@ -34,7 +34,7 @@ namespace MobileWebApp.Models
             var flag = false;
             try
             {
-                var userRegister = _instance.UserRegisters.FirstOrDefault(r => r.UserRegisterId == id);
+                var userRegister = _instance.UserRegisters.FirstOrDefault(r => r.UserId == id);
                 if (userRegister != null)
                 {
                     _instance.Remove(userRegister);
@@ -48,13 +48,13 @@ namespace MobileWebApp.Models
             return flag;
         }
 
-        public UserRegister GetUserRegister(Guid id)
+        public AddRegistration GetUserRegister(Guid id)
         {
-            var userRegister = _instance.UserRegisters.FirstOrDefault(r => r.UserRegisterId == id);
+            var userRegister = _instance.UserRegisters.FirstOrDefault(r => r.UserId == id);
             return userRegister;
         }
 
-        public IEnumerable<UserRegister> GetUserRegisters()
+        public IEnumerable<AddRegistration> GetUserRegisters()
         {
             return _instance.UserRegisters;            
         }

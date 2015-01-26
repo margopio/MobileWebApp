@@ -40,4 +40,3 @@ C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\System.Web.WebPages.
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\bin\System.Web.WebPages.Razor.xml
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.dll
 C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.pdb
-C:\Users\Mar\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.csprojResolveAssemblyReference.cache

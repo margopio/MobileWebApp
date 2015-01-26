@@ -12,6 +12,6 @@ namespace MobileWebApp.Models
 
     public class ListUserRegistersViewModel
     {
-        public IEnumerable<UserRegister> UserRegisters { get; set; }
+        public IEnumerable<AddRegistration> UserRegisters { get; set; }
     }
 }

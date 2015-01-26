@@ -7,13 +7,13 @@ namespace MobileWebApp.Models
 {
     public class InMemoryUserRegister
     {
-        private static List<UserRegister> _userRegisters;
+        private static List<AddRegistration> _userRegisters;
         private static InMemoryUserRegister _instance = null;
         private static readonly object Lock = new object();
 
         private InMemoryUserRegister()
         {
-            _userRegisters = new List<UserRegister>();            
+            _userRegisters = new List<AddRegistration>();            
         }
 
         public static InMemoryUserRegister GetInstance()
@@ -25,7 +25,7 @@ namespace MobileWebApp.Models
             return _instance;
         }
 
-        public IQueryable<UserRegister> UserRegisters
+        public IQueryable<AddRegistration> UserRegisters
         {
             get
             {
@@ -33,7 +33,7 @@ namespace MobileWebApp.Models
             }
         }
 
-        public void Add(UserRegister userRegister)
+        public void Add(AddRegistration userRegister)
         {
             lock (Lock)
             {
@@ -41,7 +41,7 @@ namespace MobileWebApp.Models
             }
         }
 
-        public void Remove(UserRegister userRegister)
+        public void Remove(AddRegistration userRegister)
         {
             lock (Lock)
             {
