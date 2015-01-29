@@ -159,6 +159,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RewardPlanController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="EchoHub.cs" />
@@ -168,10 +169,12 @@
     <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\AddProfile.cs" />
     <Compile Include="Models\AddRegistration.cs" />
+    <Compile Include="Models\GetRewardPlanResult.cs" />
     <Compile Include="Models\InMemoryUserRegister.cs" />
     <Compile Include="Models\IUserRegisterRepository.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\Reward.cs" />
+    <Compile Include="Models\RewardPlanRepository.cs" />
     <Compile Include="Models\RewardRepository.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Models\UserLogin.cs" />
