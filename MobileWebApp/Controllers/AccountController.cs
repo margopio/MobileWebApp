@@ -156,32 +156,6 @@ namespace MobileWebApp.Controllers
             }
             throw new HttpResponseException(HttpStatusCode.NotFound);            
         }
-
-        [Route("~/api/Account/gcmsenderid")]
-        public HttpResponseMessage GcmSenderId(AccountInfo UserId)
-        {
-            if (UserId.UserId != Guid.Empty)
-            {
-                var user = _repositoryUserRegister.GetUserRegister(UserId.UserId);
-                if (user != null)
-                {
-                    var data = new
-                    {
-                        FirstName = user.Firstname,
-                        LastName = user.Lastname,
-                        Birthday = user.Birthday,
-                        Phone = user.Phone,
-                        PhoneType = user.DeviceType,
-                        TextMsg = user.TextMsg,
-                        Email = user.Email,
-                        Password = user.Password
-                    };
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, data);
-                    return response;
-                }
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
+        
     }
 }

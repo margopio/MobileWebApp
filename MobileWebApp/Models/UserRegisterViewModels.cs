@@ -14,4 +14,9 @@ namespace MobileWebApp.Models
     {
         public IEnumerable<AddRegistration> UserRegisters { get; set; }
     }
+
+    public class ListGCMSendersViewModel
+    {
+        public IEnumerable<GCMSenderID> GCMSenders { get; set; }
+    }
 }

@@ -162,6 +162,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountInfoController.cs" />
+    <Compile Include="Controllers\GCMSenderIDController.cs" />
+    <Compile Include="Controllers\GCMSendersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RewardPlanController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="Models\AddProfile.cs" />
     <Compile Include="Models\AddRegistration.cs" />
     <Compile Include="Models\GCMSenderID.cs" />
+    <Compile Include="Models\GCMSenderIDRepository.cs" />
     <Compile Include="Models\GetRewardPlanResult.cs" />
     <Compile Include="Models\InMemoryUserRegister.cs" />
     <Compile Include="Models\IUserRegisterRepository.cs" />
@@ -198,6 +201,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\GCMSenders\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

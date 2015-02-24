@@ -1,0 +1,25 @@
+﻿@model MobileWebApp.Models.ListGCMSendersViewModel
+
+@{
+    ViewBag.Title = "Mobile Web App";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">List of GCMSender IDs</div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Registration ID</th>                    
+                </tr>
+            </thead>
+            @foreach (var item in Model.GCMSenders)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.GcmSenderId)</td>                    
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<br />
