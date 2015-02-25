@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using Microsoft.AspNet.SignalR;
 using MobileWebApp.Models;
+using PushSharp;
+using PushSharp.Android;
 
 namespace MobileWebApp.Controllers
 {
@@ -150,6 +152,15 @@ namespace MobileWebApp.Controllers
                 //
                 var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
                 ctx.Clients.All.greetings("reload");
+                //
+
+                // TODO GCM Routines                
+                var registrationId = GCMSenderIDRepository.Responses.LastOrDefault().GcmSenderId;                
+                PushBroker pushBroker = new PushBroker();
+                pushBroker.RegisterGcmService(new GcmPushChannelSettings("AIzaSyAHUKVH5UiYorEg_ewoMQGkDVyI3uI46W8"));               
+                pushBroker.QueueNotification(new GcmNotification().ForDeviceRegistrationId(registrationId)
+                      .WithJson(@"{""message"":""" + "GCM notice" + @"""}"));
+                pushBroker.StopAllServices();
                 //
 
                 return userToken;
