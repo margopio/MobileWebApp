@@ -155,12 +155,12 @@ namespace MobileWebApp.Controllers
                 //
 
                 // TODO GCM Routines                
-                var registrationId = GCMSenderIDRepository.Responses.LastOrDefault().GcmSenderId;                
-                PushBroker pushBroker = new PushBroker();
-                pushBroker.RegisterGcmService(new GcmPushChannelSettings("AIzaSyAHUKVH5UiYorEg_ewoMQGkDVyI3uI46W8"));               
-                pushBroker.QueueNotification(new GcmNotification().ForDeviceRegistrationId(registrationId)
-                      .WithJson(@"{""message"":""" + "GCM notice" + @"""}"));
-                pushBroker.StopAllServices();
+                //var registrationId = GCMSenderIDRepository.Responses.LastOrDefault().GcmSenderId;
+                //PushBroker pushBroker = new PushBroker();
+                //pushBroker.RegisterGcmService(new GcmPushChannelSettings("AIzaSyAHUKVH5UiYorEg_ewoMQGkDVyI3uI46W8"));
+                //pushBroker.QueueNotification(new GcmNotification().ForDeviceRegistrationId(registrationId)
+                //      .WithJson(@"{""message"":""" + "GCM notice" + @"""}"));
+                //pushBroker.StopAllServices();
                 //
 
                 return userToken;
