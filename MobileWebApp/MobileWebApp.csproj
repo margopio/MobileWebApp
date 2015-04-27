@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RewardPlanController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
+    <Compile Include="Controllers\TappedBeerController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="EchoHub.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,6 +216,8 @@
     <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\AddProfile.cs" />
     <Compile Include="Models\AddRegistration.cs" />
+    <Compile Include="Models\BeerType.cs" />
+    <Compile Include="Models\BeerTypeRepository.cs" />
     <Compile Include="Models\GCMSenderID.cs" />
     <Compile Include="Models\GCMSenderIDRepository.cs" />
     <Compile Include="Models\GetRewardPlanResult.cs" />

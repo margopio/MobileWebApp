@@ -51,9 +51,7 @@ namespace MobileWebApp.Controllers
             }
 
             throw new HttpResponseException(HttpStatusCode.NotFound); 
-        }
-
-        
+        }        
 
     }
 }
