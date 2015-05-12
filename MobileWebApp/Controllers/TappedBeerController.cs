@@ -14,11 +14,13 @@ namespace MobileWebApp.Controllers
     [RoutePrefix("api/tappedbeer")]
     public class TappedBeerController : ApiController
     {
-        public HttpResponseMessage GetBeerType(string userId, int page = 1, int pageSize = 10)
+        //public HttpResponseMessage GetBeerType(string userId, int page = 1, int pageSize = 10)
+        public HttpResponseMessage GetBeerType(string userId)
         {
             IEnumerable<BeerType> returnValue;
             int count;
-            returnValue = BeerTypeRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            //returnValue = BeerTypeRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            returnValue = BeerTypeRepository.Responses.ToList();
             count = RewardPlanRepository.Responses.Count();
 
             if (returnValue != null)

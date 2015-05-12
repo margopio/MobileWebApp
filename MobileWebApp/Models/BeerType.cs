@@ -11,6 +11,7 @@ namespace MobileWebApp.Models
         public string ImageUrl { get; set; }  
         public string Name { get; set; }
         public string Description { get; set; }
-        public string DateAdded { get; set; }  
+        public string DateAdded { get; set; }
+        public string Letter { get; set; } 
     }
 }
