@@ -21,7 +21,8 @@ namespace MobileWebApp.Controllers
             int count;
             //returnValue = BeerTypeRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             returnValue = BeerTypeRepository.Responses.ToList();
-            count = RewardPlanRepository.Responses.Count();
+            //count = RewardPlanRepository.Responses.Count();
+            count = returnValue.Count();
 
             if (returnValue != null)
             {                

@@ -6,24 +6,116 @@ using System.Net.Http;
 using System.Web.Http;
 using MobileWebApp.Models;
 using System.Web.Http.Cors;
+using MobileWebApp.Models.SIServiceRewards;
 
 namespace MobileWebApp.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Rewards")]
     public class RewardsController : ApiController
     {
-        public object GetRewards(int page = 1, int pageSize = 10)
-        {
-            IEnumerable<Reward> returnValue;
-            int count;
-            returnValue = RewardRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            count = RewardRepository.Responses.Count();
+        //
+        //public object GetRewards(int page = 1, int pageSize = 10)
+        //{
+        //    IEnumerable<Reward> returnValue;
+        //    int count;
+        //    returnValue = RewardRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        //    count = RewardRepository.Responses.Count();
            
-            return new
+        //    return new
+        //    {
+        //        Count = count,
+        //        Data = returnValue
+        //    };
+        //}
+        //
+
+        [Route("~/api/Rewards/Info")]        
+        public IList<RewardInfoResult> Info(RewardInfo model)
+        {
+            var returnValue = RewardInfoResultRepository.Responses;
+            
+            if (returnValue == null)
             {
-                Count = count,
-                Data = returnValue
-            };
+                throw new Exception();
+            }
+
+            var result = returnValue.ToList();
+            return result;
+        }
+
+        [Route("~/api/Rewards/Site")]
+        public IList<RewardSiteResult> Site(RewardSite model)
+        {
+            var returnValue = RewardSiteResultRepository.Responses;
+
+            if (returnValue == null)
+            {
+                throw new Exception();
+            }
+
+            var result = returnValue.ToList();
+            return result;
+        }
+
+        [Route("~/api/Rewards/Info/Member")]
+        public RewardInfoMemberResult InfoMember(RewardInfoMember model)
+        {
+            var returnValue1 = RewardInfoMemberResultRepository.Responses;
+
+            if (returnValue1 == null)
+            {
+                throw new Exception();
+            }
+
+            string rewardPlan = model.RewardPlan.ToString();
+            var returnValue2 = returnValue1.Where(x => x.MemberNumber == rewardPlan).FirstOrDefault();
+            if (returnValue2 == null)
+            {
+                throw new Exception();
+            }
+
+            var result = returnValue2;
+            return result;
+        }
+
+        [Route("~/api/Rewards/Club/Sales")]
+        public IList<RewardClubSaleResult> ClubSales(RewardClubSale model)
+        {
+            var returnValue = RewardClubSaleResultRepository.Responses;
+
+            if (returnValue == null)
+            {
+                throw new Exception();
+            }
+
+            var result = returnValue.ToList();
+            return result;
+        }
+
+        [Route("~/api/Rewards/Club/Items")]
+        public IList<RewardClubItemResult> ClubItems(RewardClubItem model)
+        {
+            var returnValue = RewardClubItemResultRepository.Responses;
+
+            if (returnValue == null)
+            {
+                throw new Exception();
+            }
+
+            var result = returnValue.ToList();
+            return result;
+        }
+                
+        [Route("~/api/Rewards/Rating/Update")]
+        public HttpResponseMessage RatingUpdate(RewardUpdateRating model)
+        {
+            if (model == null)
+            {
+                throw new Exception();
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
     }
