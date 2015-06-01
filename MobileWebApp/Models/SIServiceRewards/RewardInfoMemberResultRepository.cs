@@ -13,7 +13,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             responses = new List<RewardInfoMemberResult>();
             responses.Add(new RewardInfoMemberResult
             {
-                MemberNumber = "1001",
+                MemberNumber = "1",
                 MemberLevel = 1,
                 SiteRewardPlanId = 1,
                 CurrentPoints = 100,
@@ -22,7 +22,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             });
             responses.Add(new RewardInfoMemberResult
             {
-                MemberNumber = "1002",
+                MemberNumber = "2",
                 MemberLevel = 2,
                 SiteRewardPlanId = 1,
                 CurrentPoints = 100,
@@ -31,7 +31,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             });
             responses.Add(new RewardInfoMemberResult
             {
-                MemberNumber = "1003",
+                MemberNumber = "3",
                 MemberLevel = 3,
                 SiteRewardPlanId = 1,
                 CurrentPoints = 100,
@@ -40,7 +40,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             });
             responses.Add(new RewardInfoMemberResult
             {
-                MemberNumber = "1004",
+                MemberNumber = "4",
                 MemberLevel = 4,
                 SiteRewardPlanId = 1,
                 CurrentPoints = 100,
@@ -49,7 +49,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             });
             responses.Add(new RewardInfoMemberResult
             {
-                MemberNumber = "1005",
+                MemberNumber = "5",
                 MemberLevel = 5,
                 SiteRewardPlanId = 1,
                 CurrentPoints = 100,

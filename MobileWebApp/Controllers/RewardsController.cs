@@ -55,11 +55,12 @@ namespace MobileWebApp.Controllers
             }
 
             var result = returnValue.ToList();
-            return result;
+            return result;            
         }
 
         [Route("~/api/Rewards/Info/Member")]
-        public RewardInfoMemberResult InfoMember(RewardInfoMember model)
+        //public RewardInfoMemberResult InfoMember(RewardInfoMember model)
+        public object InfoMember(RewardInfoMember model)
         {
             var returnValue1 = RewardInfoMemberResultRepository.Responses;
 
@@ -74,9 +75,21 @@ namespace MobileWebApp.Controllers
             {
                 throw new Exception();
             }
+                        
+            string date1 = String.Format("{0:00}/{1:00}/{2:0000}", returnValue2.RenewalDate.Month, returnValue2.RenewalDate.Day, returnValue2.RenewalDate.Year);
+            string date2 = String.Format("{0:00}/{1:00}/{2:0000}", returnValue2.StartDate.Month, returnValue2.StartDate.Day, returnValue2.StartDate.Year);
 
-            var result = returnValue2;
-            return result;
+            //var result = returnValue2;
+            var result = new
+            {
+                MemberNumber = returnValue2.MemberNumber,
+                MemberLevel = returnValue2.MemberLevel,
+                SiteRewardPlanId = returnValue2.SiteRewardPlanId,
+                CurrentPoints = returnValue2.CurrentPoints,
+                StartDate = date2,
+                RenewalDate = date1
+            };            
+            return result;            
         }
 
         [Route("~/api/Rewards/Club/Sales")]
