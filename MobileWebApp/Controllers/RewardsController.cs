@@ -93,9 +93,39 @@ namespace MobileWebApp.Controllers
         }
 
         [Route("~/api/Rewards/Club/Sales")]
-        public IList<RewardClubSaleResult> ClubSales(RewardClubSale model)
+        [HttpGet]
+        //public IList<RewardClubSaleResult> ClubSales(RewardClubSale model)
+        public List<object> ClubSales(RewardClubSale model)
         {
             var returnValue = RewardClubSaleResultRepository.Responses;
+
+            if (returnValue == null)
+            {
+                throw new Exception();
+            }
+
+            //var result = returnValue.ToList();
+            List<object> result = new List<object>();
+            foreach (var item in returnValue)
+            {
+                result.Add(new
+                {
+                    MemberRewardPlan = item.MemberRewardPlan,
+                    MenuItemName = item.MenuItemName,
+                    SiteName = item.SiteName,
+                    SaleDate = item.SaleDate.ToString("M/d/yyyy"),
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                });
+            }
+
+            return result;
+        }
+        
+        [Route("~/api/Rewards/Club/Items")]
+        public IList<RewardClubItemResult> ClubItems(RewardClubItem model)
+        {
+            var returnValue = RewardClubItemResultRepository.Responses;
 
             if (returnValue == null)
             {
@@ -106,10 +136,11 @@ namespace MobileWebApp.Controllers
             return result;
         }
 
-        [Route("~/api/Rewards/Club/Items")]
-        public IList<RewardClubItemResult> ClubItems(RewardClubItem model)
+        [Route("~/api/Rewards/Club/ItemsMobile")]
+        [HttpGet]
+        public IList<RewardClubItemResult_Mobile> ClubItemsMobile(RewardClubItem model)
         {
-            var returnValue = RewardClubItemResultRepository.Responses;
+            var returnValue = RewardClubItemResult_MobileRepository.Responses;
 
             if (returnValue == null)
             {
@@ -130,6 +161,6 @@ namespace MobileWebApp.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
-
+               
     }
 }

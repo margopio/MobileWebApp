@@ -230,6 +230,8 @@
     <Compile Include="Models\SIServiceRewards\RewardClubItem.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubItemResult.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubItemResultRepository.cs" />
+    <Compile Include="Models\SIServiceRewards\RewardClubItemResult_Mobile.cs" />
+    <Compile Include="Models\SIServiceRewards\RewardClubItemResult_MobileRepository.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubSale.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubSaleResult.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubSaleResultRepository.cs" />

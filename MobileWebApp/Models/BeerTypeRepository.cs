@@ -45,7 +45,7 @@ namespace MobileWebApp.Models
                         Name = "Beer Type " + number,
                         Description = "Put a short description here.",
                         DateAdded = DateTime.Now.ToString("M/d/yyyy"),
-                        Letter = ((char)('a' + (random2.Next(0, 26)))).ToString()
+                        Letter = ((char)('A' + (random2.Next(0, 26)))).ToString()
                         //Letter = "a"
                     });
                 }

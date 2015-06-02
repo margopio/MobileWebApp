@@ -15,7 +15,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             {
                MemberRewardPlan = 1,
                MenuItemName = "Menu Item 1",
-               SiteName = "Beer Tracker",
+               SiteName = "The Beer Market",
                Quantity = 1,
                Price = 10.00M,
                SaleDate = new DateTime(2015, 03, 01)
@@ -24,7 +24,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             {
                 MemberRewardPlan = 1,
                 MenuItemName = "Menu Item 2",
-                SiteName = "Beer Tracker",
+                SiteName = "The Beer Market",
                 Quantity = 1,
                 Price = 10.00M,
                 SaleDate = new DateTime(2015, 03, 02)
@@ -33,7 +33,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             {
                 MemberRewardPlan = 1,
                 MenuItemName = "Menu Item 3",
-                SiteName = "Beer Tracker",
+                SiteName = "The Beer Market",
                 Quantity = 1,
                 Price = 10.00M,
                 SaleDate = new DateTime(2015, 03, 03)
@@ -42,7 +42,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             {
                 MemberRewardPlan = 1,
                 MenuItemName = "Menu Item 4",
-                SiteName = "Beer Tracker",
+                SiteName = "The Beer Market",
                 Quantity = 1,
                 Price = 10.00M,
                 SaleDate = new DateTime(2015, 03, 04)
@@ -51,7 +51,7 @@ namespace MobileWebApp.Models.SIServiceRewards
             {
                 MemberRewardPlan = 1,
                 MenuItemName = "Menu Item 5",
-                SiteName = "Beer Tracker",
+                SiteName = "The Beer Market",
                 Quantity = 1,
                 Price = 10.00M,
                 SaleDate = new DateTime(2015, 03, 05)
