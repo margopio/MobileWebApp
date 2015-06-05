@@ -236,9 +236,9 @@
     <Compile Include="Models\SIServiceRewards\RewardClubSaleResult.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubSaleResultRepository.cs" />
     <Compile Include="Models\SIServiceRewards\RewardInfo.cs" />
-    <Compile Include="Models\SIServiceRewards\RewardInfoMember.cs" />
-    <Compile Include="Models\SIServiceRewards\RewardInfoMemberResult.cs" />
-    <Compile Include="Models\SIServiceRewards\RewardInfoMemberResultRepository.cs" />
+    <Compile Include="Models\SIServiceRewards\RewardMember.cs" />
+    <Compile Include="Models\SIServiceRewards\RewardMemberResult.cs" />
+    <Compile Include="Models\SIServiceRewards\RewardMemberResultRepository.cs" />
     <Compile Include="Models\SIServiceRewards\RewardInfoResult.cs" />
     <Compile Include="Models\SIServiceRewards\RewardInfoResultRepository.cs" />
     <Compile Include="Models\SIServiceRewards\RewardSite.cs" />

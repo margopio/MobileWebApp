@@ -5,8 +5,9 @@ using System.Web;
 
 namespace MobileWebApp.Models.SIServiceRewards
 {
-    public class RewardInfoMember
+    public class RewardMember
     {
-        public int RewardPlan { get; set; }
+        public int SiteRewardPlanId { get; set; }
+        public string MemberNumber { get; set; }
     }
 }

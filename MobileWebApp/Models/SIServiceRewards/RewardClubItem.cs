@@ -7,7 +7,8 @@ namespace MobileWebApp.Models.SIServiceRewards
 {
     public class RewardClubItem
     {
-        public int SiteRewardPlan { get; set; }
+        public int SiteRewardPlanId { get; set; }
+        public string MemberNumber { get; set; }
         public bool NotPurchased { get; set; }
     }
 }

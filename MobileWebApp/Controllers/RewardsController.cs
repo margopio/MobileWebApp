@@ -58,42 +58,28 @@ namespace MobileWebApp.Controllers
             return result;            
         }
 
-        [Route("~/api/Rewards/Info/Member")]
+        [Route("~/api/Rewards/Member")]
         //public RewardInfoMemberResult InfoMember(RewardInfoMember model)
-        public object InfoMember(RewardInfoMember model)
+        public object InfoMember(RewardMember model)
         {
-            var returnValue1 = RewardInfoMemberResultRepository.Responses;
+            var returnValue = RewardMemberResultRepository.Responses;
 
-            if (returnValue1 == null)
+            if (returnValue == null)
             {
                 throw new Exception();
-            }
-
-            string rewardPlan = model.RewardPlan.ToString();
-            var returnValue2 = returnValue1.Where(x => x.MemberNumber == rewardPlan).FirstOrDefault();
-            if (returnValue2 == null)
-            {
-                throw new Exception();
-            }
-                        
-            string date1 = String.Format("{0:00}/{1:00}/{2:0000}", returnValue2.RenewalDate.Month, returnValue2.RenewalDate.Day, returnValue2.RenewalDate.Year);
-            string date2 = String.Format("{0:00}/{1:00}/{2:0000}", returnValue2.StartDate.Month, returnValue2.StartDate.Day, returnValue2.StartDate.Year);
-
-            //var result = returnValue2;
+            }            
+            
             var result = new
-            {
-                MemberNumber = returnValue2.MemberNumber,
-                MemberLevel = returnValue2.MemberLevel,
-                SiteRewardPlanId = returnValue2.SiteRewardPlanId,
-                CurrentPoints = returnValue2.CurrentPoints,
-                StartDate = date2,
-                RenewalDate = date1
+            {              
+                MemberLevel = returnValue.FirstOrDefault(x => x.MemberLevel == 1).MemberLevel,                
+                CurrentPoints = returnValue.FirstOrDefault(x => x.MemberLevel == 1).CurrentPoints,
+                StartDate = returnValue.FirstOrDefault(x => x.MemberLevel == 1).StartDate.ToString("M/d/yyyy"),
+                RenewalDate = returnValue.FirstOrDefault(x => x.MemberLevel == 1).RenewalDate.ToString("M/d/yyyy"),
             };            
             return result;            
         }
 
-        [Route("~/api/Rewards/Club/Sales")]
-        [HttpGet]
+        [Route("~/api/Rewards/Club/Sales")]        
         //public IList<RewardClubSaleResult> ClubSales(RewardClubSale model)
         public List<object> ClubSales(RewardClubSale model)
         {
@@ -136,8 +122,7 @@ namespace MobileWebApp.Controllers
             return result;
         }
 
-        [Route("~/api/Rewards/Club/ItemsMobile")]
-        [HttpGet]
+        [Route("~/api/Rewards/Club/ItemsMobile")]        
         public IList<RewardClubItemResult_Mobile> ClubItemsMobile(RewardClubItem model)
         {
             var returnValue = RewardClubItemResult_MobileRepository.Responses;
