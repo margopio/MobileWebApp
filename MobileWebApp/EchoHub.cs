@@ -14,7 +14,7 @@ namespace MobileWebApp
             while (true)
             {
                 Clients.All.showTime(DateTime.Now.ToLongTimeString());
-                Thread.Sleep(TimeSpan.FromSeconds(30));
+                Thread.Sleep(TimeSpan.FromSeconds(90));
             }
         }
     }
