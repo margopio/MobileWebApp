@@ -183,6 +183,7 @@
     <Content Include="Images\beer_map_marker.png" />
     <Content Include="Images\home-background.png" />
     <Content Include="Images\the-beer-market.png" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -202,6 +203,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountInfoController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\GCMSenderIDController.cs" />
     <Compile Include="Controllers\GCMSendersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,6 +220,8 @@
     <Compile Include="Models\AddRegistration.cs" />
     <Compile Include="Models\BeerType.cs" />
     <Compile Include="Models\BeerTypeRepository.cs" />
+    <Compile Include="Models\CommentingSystem\Comment.cs" />
+    <Compile Include="Models\CommentingSystem\CommentsRepository.cs" />
     <Compile Include="Models\GCMSenderID.cs" />
     <Compile Include="Models\GCMSenderIDRepository.cs" />
     <Compile Include="Models\GetRewardPlanResult.cs" />

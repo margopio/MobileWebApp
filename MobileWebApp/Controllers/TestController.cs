@@ -16,7 +16,7 @@ namespace MobileWebApp.Controllers
         {
             return new HttpResponseMessage()
             {
-                Content = new StringContent("GET: Test message - Remote 1")
+                Content = new StringContent("GET: Test message - Remote 1")               
             };
         }
 
