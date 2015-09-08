@@ -15,19 +15,19 @@ namespace MobileWebApp.Controllers
     public class RewardsController : ApiController
     {
         //
-        //public object GetRewards(int page = 1, int pageSize = 10)
-        //{
-        //    IEnumerable<Reward> returnValue;
-        //    int count;
-        //    returnValue = RewardRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-        //    count = RewardRepository.Responses.Count();
-           
-        //    return new
-        //    {
-        //        Count = count,
-        //        Data = returnValue
-        //    };
-        //}
+        public object GetRewards(int page = 1, int pageSize = 10)
+        {
+            IEnumerable<Reward> returnValue;
+            int count;
+            returnValue = RewardRepository.Responses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            count = RewardRepository.Responses.Count();
+
+            return new
+            {
+                Count = count,
+                Data = returnValue
+            };
+        }
         //
 
         [Route("~/api/Rewards/Info")]        
