@@ -231,6 +231,8 @@
     <Compile Include="Models\Reward.cs" />
     <Compile Include="Models\RewardPlanRepository.cs" />
     <Compile Include="Models\RewardRepository.cs" />
+    <Compile Include="Models\SIServiceRewards\MembershipCard.cs" />
+    <Compile Include="Models\SIServiceRewards\MembershipCardsRepository.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubItem.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubItemResult.cs" />
     <Compile Include="Models\SIServiceRewards\RewardClubItemResultRepository.cs" />

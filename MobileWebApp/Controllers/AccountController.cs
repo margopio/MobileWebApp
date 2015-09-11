@@ -9,6 +9,7 @@ using Microsoft.AspNet.SignalR;
 using MobileWebApp.Models;
 using PushSharp;
 using PushSharp.Android;
+using MobileWebApp.Models.SIServiceRewards;
 
 namespace MobileWebApp.Controllers
 {
@@ -22,23 +23,29 @@ namespace MobileWebApp.Controllers
         {
             _repositoryUserRegister = new UserRegisterRepository();
         }
-
+        
         [Route("~/api/Account/register")]
         public HttpResponseMessage Register(AddRegistration model)
-        {
+        {            
+            if (!MembershipCardsRepository.Responses.Any(x => x.MemberCardNo == model.CardNo))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);    
+            }
+
             AddRegistration userRegisterTo = new AddRegistration();
             userRegisterTo.UserId = Guid.NewGuid();
+            userRegisterTo.CardNo = model.CardNo;
             userRegisterTo.Firstname = model.Firstname;
             userRegisterTo.Lastname = model.Lastname;
             userRegisterTo.Birthday = model.Birthday;
             userRegisterTo.Phone = model.Phone;
-            userRegisterTo.DeviceType = model.DeviceType;
-            userRegisterTo.TextMsg = model.TextMsg;
+            userRegisterTo.DeviceType = 1;
+            userRegisterTo.TextMsg = "";
             userRegisterTo.Email = model.Email;
             userRegisterTo.Password = model.Password;           
             var status = _repositoryUserRegister.Add(userRegisterTo);
             UserToken userToken = new UserToken();
-            
+
             if (status)
             {
                 userToken.MemberNumber = userRegisterTo.UserId.ToString();
@@ -56,7 +63,10 @@ namespace MobileWebApp.Controllers
 
                 return response;
             }
-            throw new HttpResponseException(HttpStatusCode.Conflict);          
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Conflict);
+            }
         }
 
         [Route("~/api/Account/accountinfoupdate")]
@@ -100,7 +110,10 @@ namespace MobileWebApp.Controllers
 
                         return response;
                     }
-                    throw new HttpResponseException(HttpStatusCode.Conflict);               
+                    else
+                    {
+                        throw new HttpResponseException(HttpStatusCode.Conflict);
+                    }
                 }
             }
 
@@ -135,37 +148,42 @@ namespace MobileWebApp.Controllers
             throw new HttpResponseException(HttpStatusCode.NotFound);           
         }
         
-        [Route("~/api/Account/login")]        
-        public UserToken Login(LoginUser model)
-        {
-            UserToken userToken = new UserToken();
-
+        [Route("~/api/Account/login")]
+        public HttpResponseMessage Login(LoginUser model)
+        {            
             var userFound = _repositoryUserRegister.GetUserRegisters().FirstOrDefault(u => u.Email == model.LoginId && u.Password == model.Password);
             if (userFound != null)
             {
+                UserToken userToken = new UserToken();                
                 userToken.MemberNumber = userFound.UserId.ToString();
                 userToken.SiteID = 0;
                 userToken.UserType = 0;
                 userToken.FirstName = userFound.Firstname;
                 userToken.LastName = userFound.Lastname;
 
-                //
-                var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
-                ctx.Clients.All.greetings("reload");
-                //
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, userToken);                
 
-                // TODO GCM Routines                
-                //var registrationId = GCMSenderIDRepository.Responses.LastOrDefault().GcmSenderId;
-                //PushBroker pushBroker = new PushBroker();
-                //pushBroker.RegisterGcmService(new GcmPushChannelSettings("AIzaSyAHUKVH5UiYorEg_ewoMQGkDVyI3uI46W8"));
-                //pushBroker.QueueNotification(new GcmNotification().ForDeviceRegistrationId(registrationId)
-                //      .WithJson(@"{""message"":""" + "GCM notice" + @"""}"));
-                //pushBroker.StopAllServices();
-                //
+                return response;
+             }
+             else 
+             {
+                throw new HttpResponseException(HttpStatusCode.NotFound);    
+             }                
 
-                return userToken;
-            }
-            throw new HttpResponseException(HttpStatusCode.NotFound);            
+            //
+            //var ctx = GlobalHost.ConnectionManager.GetHubContext<EchoHub>();
+            //ctx.Clients.All.greetings("reload");
+            //
+
+            // TODO GCM Routines                
+            //var registrationId = GCMSenderIDRepository.Responses.LastOrDefault().GcmSenderId;
+            //PushBroker pushBroker = new PushBroker();
+            //pushBroker.RegisterGcmService(new GcmPushChannelSettings("AIzaSyAHUKVH5UiYorEg_ewoMQGkDVyI3uI46W8"));
+            //pushBroker.QueueNotification(new GcmNotification().ForDeviceRegistrationId(registrationId)
+            //      .WithJson(@"{""message"":""" + "GCM notice" + @"""}"));
+            //pushBroker.StopAllServices();
+            //
+         
         }
         
     }

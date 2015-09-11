@@ -11,7 +11,7 @@ namespace MobileWebApp.Models
         {
             Profiles = new List<AddProfile>();
         }
-        
+
         public int SiteId { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
@@ -25,6 +25,7 @@ namespace MobileWebApp.Models
         public Guid UserId { get; set; }
         public string Password { get; set; }
         public string TextMsg { get; set; }
+        public string CardNo { get; set; }
         public IList<AddProfile> Profiles { get; set; }
     }
 }
