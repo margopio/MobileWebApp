@@ -86,10 +86,10 @@ namespace MobileWebApp.Controllers
                     userRegisterTo.Lastname = model.Lastname;
                     userRegisterTo.Birthday = model.Birthday;
                     userRegisterTo.Phone = model.Phone;
-                    userRegisterTo.DeviceType = model.DeviceType;
-                    userRegisterTo.TextMsg = model.TextMsg;
-                    userRegisterTo.Email = model.Email;
-                    userRegisterTo.Password = model.Password;                    
+                    userRegisterTo.DeviceType = user.DeviceType;
+                    userRegisterTo.TextMsg = user.TextMsg;
+                    userRegisterTo.Email = user.Email;
+                    userRegisterTo.Password = user.Password;                    
                     var status = _repositoryUserRegister.Add(userRegisterTo);
                     UserToken userToken = new UserToken();
 
@@ -122,11 +122,13 @@ namespace MobileWebApp.Controllers
 
 
         [Route("~/api/Account/accountinfo")]
-        public HttpResponseMessage AccountInfo(AccountInfo UserId)
+        [HttpGet]
+        public HttpResponseMessage AccountInfo([FromUri]string userId)
         {
-            if (UserId.UserId != Guid.Empty)
+            if (!String.IsNullOrEmpty(userId))
             {
-                var user = _repositoryUserRegister.GetUserRegister(UserId.UserId);
+                var userGuid = new Guid(userId);
+                var user = _repositoryUserRegister.GetUserRegister(userGuid);
                 if (user != null)
                 {
                     var data = new 

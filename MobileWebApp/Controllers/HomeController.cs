@@ -30,7 +30,7 @@ namespace MobileWebApp.Controllers
                 userRegister.Lastname = "Last 1";                
                 userRegister.Birthday = "01/01";                
                 userRegister.Phone = "(007) 007-1001";
-                userRegister.DeviceType = 2;
+                userRegister.DeviceType = 1;
                 userRegister.TextMsg = "True";                
                 userRegister.Password = "pass123";
                 userRegister.Email = "user123@gmail.com";              
@@ -41,10 +41,21 @@ namespace MobileWebApp.Controllers
                 userRegister.Lastname = "Last 2";                
                 userRegister.Birthday = "02/02";            
                 userRegister.Phone = "(007) 007-1002";
-                userRegister.DeviceType = 1;
+                userRegister.DeviceType = 2;
                 userRegister.TextMsg = "False";                
                 userRegister.Password = "pass234";
                 userRegister.Email = "user234@gmail.com";               
+                _repositoryUserRegister.Add(userRegister);
+                userRegister = new AddRegistration();
+                userRegister.UserId = Guid.NewGuid();
+                userRegister.Firstname = "Bob";
+                userRegister.Lastname = "Bouma";
+                userRegister.Birthday = "12/12";
+                userRegister.Phone = "(007) 007-1002";
+                userRegister.DeviceType = 2;
+                userRegister.TextMsg = "False";
+                userRegister.Password = "bbouma";
+                userRegister.Email = "bbouma@we-are-pos.com";
                 _repositoryUserRegister.Add(userRegister);
             }
             ListUserRegistersViewModel userRegisterViewModel = new ListUserRegistersViewModel();
