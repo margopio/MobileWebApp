@@ -91,8 +91,10 @@ namespace MobileWebApp.Controllers
             req.TranType = "Sale";
             req.Frequency = "OneTime";
             req.Memo = "dano test";
-            req.ProcessCompleteUrl = "http://localhost:4094/Home/Complete";
-            req.ReturnUrl = "http://localhost:4094/Home/Return";
+            //req.ProcessCompleteUrl = "http://localhost:4094/Home/Complete";
+            //req.ReturnUrl = "http://localhost:4094/Home/Return";
+            req.ProcessCompleteUrl = "http://mobilewebapp.apphb.com/Home/Complete";
+            req.ReturnUrl = "http://mobilewebapp.apphb.com/Home/Return";
             req.OperatorID = "test";
             req.DisplayStyle = "custom";
             req.CancelButton = "on";
