@@ -78,5 +78,96 @@ namespace MobileWebApp.Controllers
 
             return View(userRegisterViewModel);
         }
+
+        public void Buy()
+        {
+            HCService.HCServiceSoapClient client = new HCService.HCServiceSoapClient();
+            HCService.InitPaymentRequest req = new HCService.InitPaymentRequest();
+            req.MerchantID = "935839278044253";
+            req.Password = "Rz%9NqTDGDcwxcMQ";
+            req.Invoice = "1234";
+            req.TotalAmount = 1.23;
+            req.TaxAmount = 0;
+            req.TranType = "Sale";
+            req.Frequency = "OneTime";
+            req.Memo = "dano test";
+            req.ProcessCompleteUrl = "http://localhost:4094/Home/Complete";
+            req.ReturnUrl = "http://localhost:4094/Home/Return";
+            req.OperatorID = "test";
+            req.DisplayStyle = "custom";
+            req.CancelButton = "on";
+            var resp = client.InitializePayment(req);
+
+            //ViewBag.URL = "https://hc.mercurydev.net/CheckoutIFrame.aspx?ReturnMethod=get&pid=" + resp.PaymentID;
+            //return View();
+
+            //Check the responseCode 
+            if (resp.ResponseCode == 0)
+            {
+                var hostedCheckoutURL = "https://hc.mercurydev.net/mobile/mCheckout.aspx";
+                //var hostedCheckoutURL = "https://hc.mercurydev.net/Checkout.aspx"; 
+                Response.Clear();
+                Response.Write("<html><head>");
+                Response.Write("</head><body onload=\"document.frmCheckout.submit()\">");
+                Response.Write("<form name=\"frmCheckout\" method=\"Post\" action=\"" + hostedCheckoutURL + "\">");
+                Response.Write("<input name=\"PaymentID\" type=\"hidden\" value=\"" + resp.PaymentID + "\">");
+                Response.Write("</form>");
+                Response.Write("</body></html>");
+                Response.End();
+            }
+            else
+            {
+
+            }
+
+        }
+
+        public void Return()
+        {
+            Response.Clear();
+            Response.Write("<html><head>");
+            Response.Write("</head><body>");
+
+            Response.Write("Close Browser When Done");            
+
+            //Response.Write("<script language=javascript>");
+            //Response.Write("function CloseWindow()");
+            //Response.Write("{");
+            //Response.Write("window.open('','_self','')");
+            //Response.Write("window.close()");
+            //Response.Write("}");
+            //Response.Write("</script>");
+            //Response.Write("<a href=\"\" onclick=\"CloseWindow();\">Testing Close Window</a>");
+
+            Response.Write("<script language=javascript>");
+
+            Response.Write("</script>");
+            
+            Response.Write("</body></html>");
+            Response.End();
+        }
+
+        public void Complete(string PaymentID, string ReturnCode, string ReturnMessage)
+        {
+            HCService.HCServiceSoapClient client = new HCService.HCServiceSoapClient();
+            HCService.PaymentInfoRequest req = new HCService.PaymentInfoRequest();
+            req.MerchantID = "935839278044253";
+            req.Password = "Rz%9NqTDGDcwxcMQ";
+            req.PaymentID = PaymentID;
+            var resp = client.VerifyPayment(req);
+
+            //return View(resp);
+
+            Response.Clear();
+            Response.Write("<html><head>");
+            Response.Write("</head><body>");
+            Response.Write("Testing Complete ---");
+            Response.Write("</body></html>");
+            Response.End();
+
+        }
+
+
+
 	}
 }

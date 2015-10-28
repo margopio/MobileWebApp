@@ -150,6 +150,47 @@ namespace MobileWebApp.Controllers
             throw new HttpResponseException(HttpStatusCode.NotFound);           
         }
         
+        [Route("~/api/Account/member/beer/first/validate")]        
+        [HttpGet]
+        public HttpResponseMessage Validate([FromUri]ValidateUserLogin data)
+        {
+            if (String.IsNullOrEmpty(data.Email))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+                
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, "");
+            
+        }
+
+        [Route("~/api/Account/member/beer/second/validate")]
+        [HttpGet]
+        public HttpResponseMessage Validate([FromUri]ValidateMember data)
+        {
+            if (data == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            }
+
+            int memberNumber = 1234567890;
+            return Request.CreateResponse(HttpStatusCode.OK, memberNumber);
+
+        }
+
+        [HttpPost]
+        [Route("~/api/Account/member/beer")]
+        public HttpResponseMessage Register(RegisterCommand model)
+        {
+            if (model == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.Conflict);
+
+            }
+                        
+            return Request.CreateResponse(HttpStatusCode.OK, "");
+        }
+        
         [Route("~/api/Account/login")]
         public HttpResponseMessage Login(LoginUser model)
         {            

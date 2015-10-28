@@ -1,0 +1,377 @@
+﻿<!DO1CTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SIService Test for 2-Step Registration</title>
+</head>
+<body>
+    <br />
+    Enter Email Address (Username): <input id="validate1-email" type="text" />
+    <br /><br />
+    <button id="validation1-btn">1st Validation</button>
+    <br /><br /><br />
+    Enter Member Card No.: <input id="validate2-cardnumber" type="text" />
+    <br /><br />
+    Enter First Name: <input id="validate2-firstname" type="text" />
+    <br /><br />
+    Enter Last Name: <input id="validate2-lastname" type="text" />
+    <br /><br />
+    <button id="validation2-btn">2nd Validation</button>
+    <br /><br /><br />       
+    Enter password: <input id="register-password" type="text" />
+    <br /><br />
+    <button id="registration-btn">Register</button>
+
+    <br />
+    <p>Or</p>
+    
+    Enter username: <input id="login-username" type="text" />
+    <br /><br />
+    Enter password: <input id="login-password" type="text" />
+    <br /><br />
+    <button id="token-api-btn">Log In</button>
+    <br /><br /><br />
+
+    <p>
+        api->rewards->info-><button id="get-reward-info-btn">GetRewardPlans</button>
+    </p>
+    <p>
+        api->rewards->site-><button id="get-reward-rewards-site">GetSiteRewardPlans</button>
+    </p>
+    <p>
+        api->rewards->member-><button id="get-reward-member">GetMemberRewardInfo</button>
+    </p>
+    <p>
+        api->rewards->club->sales->
+        <button id="get-reward-club-sales">GetMemberRewardClubSales</button>
+    </p>
+    <p>
+        api->rewards->club->items->
+        <button id="get-reward-club-items">GetMemberRewardClubItems</button>
+    </p>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+  	$.support.cors = true;
+
+$(document).ready(function () {
+    var token = '';
+    var memNumber = '';
+    var email = '';
+    var cardNumber = '';
+    var password = '';
+    var firstName = '';
+    var lastName = '';    
+
+    var api = 'http://dev.service.servingintel.com/';
+    //var api = 'http://mobilewebapp.apphb.com/';
+    //var api = 'http://localhost:4094/';
+
+    $('#validation1-btn').bind('click', function (event) {
+  		email = $('#validate1-email').val();
+        //console.log("email = " + email);
+
+        var data = {
+            Email: email
+        };
+
+        $.ajax({
+            type: 'GET',
+            url: api + 'api/register/member/beer/first/validate',
+            //dataType: 'json',
+            contentType: 'application/json',            
+            data: data,
+            success: function (response, status, xhr) {
+                console.log(status);
+                
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+        
+    });
+
+    $('#validation2-btn').bind('click', function (event) {
+        cardNumber = $('#validate2-cardnumber').val();
+        firstName = $('#validate2-firstname').val();
+        lastName = $('#validate2-lastname').val();
+        console.log("cardNumber = " + cardNumber + " firstName = " + firstName + " lastName = " + lastName + " email = " + email);
+
+        var data = {
+            IdCard: cardNumber,
+            Firstname: firstName,
+            Lastname: lastName,
+            Email: email
+        };
+                
+        $.ajax({
+            type: 'GET',
+            url: api + 'api/account/member/beer/second/validate',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: data,
+            success: function (response, status, xhr) {
+                memNumber = response;
+                console.log("response = " + response + " memNumber = " + memNumber);
+                alert(status);
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+    });
+
+    $('#registration-btn').bind('click', function (event) {
+        //var username = $('#register-username').val();
+        var password = $('#register-password').val();        
+        console.log("password = " + password + " memNumber = " + memNumber);
+
+        var data = {
+            MemberKey: memNumber,
+            IdCard: cardNumber,
+            Password: password,
+            ConfirmPassword: password,
+            DeviceType: 99,           
+            Profiles: [{ Name: "Test", Value: "Test" }],
+            BeerProfiles: [{ Name: "Test", Value: "Test" }]
+        };
+        $.ajax({
+            type: 'POST',
+            url: api + 'api/account/member/beer',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (response, status, xhr) {                
+                //$('#register-password').val("");
+
+                console.log(response);
+                alert(response);
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+
+    });
+
+    $('#token-api-btn').bind('click', function (event) {
+        var username1 = $('#login-username').val();
+        var password1 = $('#login-password').val();
+        //console.log("username = " + username1 + "  password = " + password1);
+
+        var grantType = 'password';
+        var username = username1;
+        var password = password1;
+
+
+        var data = {
+            grant_type: grantType,
+            username: username,
+            password: password
+        };
+        $.ajax({
+            type: 'POST',
+            url: api + 'login',
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded',
+            data: data,
+            success: function (response, status, xhr) {
+                $('#login-username').val("");
+                $('#login-password').val("");
+                //console.log(response);
+                token = response['access_token'];
+                memNumber = response['memberNumber'];
+                alert("token: " + response['access_token']  + "\n" +
+                      "lastname: " + response['lastname']  + "\n" +
+                      "firstname: " + response['firstname']  + "\n" +
+                      "memberNumber: " + response['memberNumber']  + "\n");
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+    });
+
+    $('#get-reward-info-btn').bind('click', function (event) {
+        var rewardInfo = {
+            Name: 'RewardName',
+            Value: 'Beer'
+        };
+        $.ajax({
+            type: 'POST',
+            url: api + 'api/rewards/info',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(rewardInfo),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
+            success: function (response, status, xhr) {
+                //console.log(response);
+                if (response.length) {
+                  $.each(response, function(index){
+                    alert("Name: " + response[index].Name + "  " +
+                          "Type: " + response[index].Type + "  " +
+                          "PointsRequired: " + response[index].PointsRequired + "  " +
+                          "Description: " + response[index].Description +
+                          "\n");
+                  })
+                } else {
+                    alert("No data found");
+                }
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+    });
+
+    $('#get-reward-rewards-site').bind('click', function (event) {
+        var rewardSite = { SiteId: 25 };
+        $.ajax({
+            type: 'POST',
+            url: api + 'api/rewards/site',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(rewardSite),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
+            success: function (response, status, xhr) {
+                //console.log(response);
+                if (response.length) {
+                  $.each(response, function(index){
+                  alert("Name: " + response[index].Name + "  " +
+                          "Type: " + response[index].Type + "  " +
+                          "PointsRequired: " + response[index].PointsRequired + "  " +
+                          "Description: " + response[index].Description +
+                          "\n");
+                  })
+                } else {
+                    alert("No data found");
+                }
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+    });
+
+    $('#get-reward-member').bind('click', function (event) {
+        var rewardMember = {
+            SiteRewardPlanId: 2,
+            MemberNumber: memNumber
+        };
+        $.ajax({
+            type: 'POST',
+            url: api + 'api/rewards/member',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(rewardMember),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
+            success: function (response, status, xhr) {
+                //console.log(response);
+                alert("MemberLevel: " + response.MemberLevel + "  " + "CurrentPoints: " + response.CurrentPoints + "  " + "StartDate: " + response.StartDate + "  " + "RenewalDate: " + response.RenewalDate);
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+    });
+
+    $('#get-reward-club-sales').bind('click', function (event) {
+        var rewardClubSale = {
+            SiteRewardPlanId: 2,
+            MemberNumber: memNumber,
+            IsReward: true
+        };
+        $.ajax({
+            type: 'POST',
+            url: api + 'api/rewards/club/sales',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(rewardClubSale),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
+            success: function (response, status, xhr) {
+              //console.log(response);
+              if (response.length) {
+                $.each(response, function(index){
+                    alert("MemberRewardPlanId: " + response[index].MemberRewardPlanId + "  " +
+                          "MenuItemName: " + response[index].MenuItemName + "  " +
+                          "SiteName: " + response[index].SiteName + "  " +
+                          "SaleDate: " + response[index].SaleDate + "  " +
+                          "Quantity: " + response[index].Quantity + "  " +
+                          "Price: " + response[index].Price +
+                          "\n");
+                })
+              } else {
+                    alert("No data found");
+              }
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                //console.log(errorMessage);
+                alert(errorMessage);
+            }
+        })
+    });
+
+    $('#get-reward-club-items').bind('click', function (event) {
+        var rewardClubItem = {
+            SiteRewardPlanId: 2,
+            MemberNumber: memNumber,
+            NotPurchased: true
+        };
+        $.ajax({
+            type: 'POST',
+            url: api + 'api/rewards/club/items',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(rewardClubItem),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
+            success: function (response, status, xhr) {
+                //console.log(response);
+                if (response.length) {
+                  var items = "";
+                  $.each(response, function(index){
+                    items = items + response[index].MenuItemName + ",  ";
+                  });
+                  alert("MenuItemName: " + items);
+                } else {
+                    alert("No data found");
+                }
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = error || xhr.statusText;
+                console.log(errorMessage);
+                alert(errorMessage);
+            }
+        });
+    });
+});
+
+    </script>
+
+</body>
+</html>
