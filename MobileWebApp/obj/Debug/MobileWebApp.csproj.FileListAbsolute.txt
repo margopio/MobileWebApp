@@ -116,4 +116,3 @@ C:\Users\Mar Gopio\Documents\GitHub\MobileWebApp\MobileWebApp\bin\System.Web.Web
 C:\Users\Mar Gopio\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.csproj.App.config
 C:\Users\Mar Gopio\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.dll
 C:\Users\Mar Gopio\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.pdb
-C:\Users\Mar Gopio\Documents\GitHub\MobileWebApp\MobileWebApp\obj\Debug\MobileWebApp.csprojResolveAssemblyReference.cache
