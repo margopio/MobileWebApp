@@ -113,6 +113,8 @@ namespace MobileWebApp.Controllers
                 Response.Clear();
                 Response.Write("<html><head>");
                 Response.Write("</head><body onload=\"document.frmCheckout.submit()\">");
+                Response.Write("<h1>Mercury Pay Redirect Page</h1>");
+                Response.Write("<h4>Put loading indicator here when needed.</h4>");
                 Response.Write("<form name=\"frmCheckout\" method=\"Post\" action=\"" + hostedCheckoutURL + "\">");
                 Response.Write("<input name=\"PaymentID\" type=\"hidden\" value=\"" + resp.PaymentID + "\">");
                 Response.Write("</form>");
