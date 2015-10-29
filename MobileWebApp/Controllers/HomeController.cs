@@ -91,10 +91,12 @@ namespace MobileWebApp.Controllers
             req.TranType = "Sale";
             req.Frequency = "OneTime";
             req.Memo = "dano test";
-            //req.ProcessCompleteUrl = "http://localhost:4094/Home/Complete";
-            //req.ReturnUrl = "http://localhost:4094/Home/Return";
-            req.ProcessCompleteUrl = "http://mobilewebapp.apphb.com/Home/Complete";
-            req.ReturnUrl = "http://mobilewebapp.apphb.com/Home/Return";
+
+            //req.ProcessCompleteUrl = "http://mobilewebapp.apphb.com/Home/Complete";
+            //req.ReturnUrl = "http://mobilewebapp.apphb.com/Home/Cancel";
+            req.ProcessCompleteUrl = "http://localhost:4094/Home/Complete";
+            req.ReturnUrl = "http://localhost:4094/Home/Cancel";
+            
             req.OperatorID = "test";
             req.DisplayStyle = "custom";
             req.CancelButton = "on";
@@ -124,29 +126,9 @@ namespace MobileWebApp.Controllers
 
         }
 
-        public void Return()
+        public ActionResult Cancel()
         {
-            Response.Clear();
-            Response.Write("<html><head>");
-            Response.Write("</head><body>");
-
-            Response.Write("Close Browser When Done");            
-
-            //Response.Write("<script language=javascript>");
-            //Response.Write("function CloseWindow()");
-            //Response.Write("{");
-            //Response.Write("window.open('','_self','')");
-            //Response.Write("window.close()");
-            //Response.Write("}");
-            //Response.Write("</script>");
-            //Response.Write("<a href=\"\" onclick=\"CloseWindow();\">Testing Close Window</a>");
-
-            Response.Write("<script language=javascript>");
-
-            Response.Write("</script>");
-            
-            Response.Write("</body></html>");
-            Response.End();
+            return View();
         }
 
         public void Complete(string PaymentID, string ReturnCode, string ReturnMessage)
@@ -163,7 +145,9 @@ namespace MobileWebApp.Controllers
             Response.Clear();
             Response.Write("<html><head>");
             Response.Write("</head><body>");
-            Response.Write("Testing Complete ---");
+            Response.Write("<h1>");
+            Response.Write("Testing is Completed - Show your other info here.");
+            Response.Write("</h1>");
             Response.Write("</body></html>");
             Response.End();
 
