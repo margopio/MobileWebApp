@@ -81,6 +81,9 @@ namespace MobileWebApp.Controllers
 
         public void Buy()
         {
+            string firstName = Request.QueryString["firstName"];
+            string lastName = Request.QueryString["lastName"];
+            
             HCService.HCServiceSoapClient client = new HCService.HCServiceSoapClient();
             HCService.InitPaymentRequest req = new HCService.InitPaymentRequest();
             req.MerchantID = "935839278044253";
@@ -114,7 +117,8 @@ namespace MobileWebApp.Controllers
                 Response.Write("<html><head>");
                 Response.Write("</head><body onload=\"document.frmCheckout.submit()\">");
                 Response.Write("<h1>Mercury Pay Redirect Page</h1>");
-                Response.Write("<h4>Put loading indicator here when needed.</h4>");
+                Response.Write("<h4>Put loading indicator here when needed</h4>");
+                Response.Write("<h2>Please wait...You're being redirected to Mercury Pay</h2>");
                 Response.Write("<form name=\"frmCheckout\" method=\"Post\" action=\"" + hostedCheckoutURL + "\">");
                 Response.Write("<input name=\"PaymentID\" type=\"hidden\" value=\"" + resp.PaymentID + "\">");
                 Response.Write("</form>");
@@ -128,31 +132,27 @@ namespace MobileWebApp.Controllers
 
         }
 
-        public ActionResult Cancel()
+        public ActionResult Cancel(string PaymentID, int ReturnCode, string ReturnMessage)
         {
+            ViewData["PaymentID"] = PaymentID;
+            ViewData["ReturnCode"] = ReturnCode;
+            ViewData["ReturnMessage"] = ReturnMessage;
             return View();
         }
 
-        public void Complete(string PaymentID, string ReturnCode, string ReturnMessage)
+        public ActionResult Complete(string PaymentID, int ReturnCode, string ReturnMessage)
         {
-            HCService.HCServiceSoapClient client = new HCService.HCServiceSoapClient();
-            HCService.PaymentInfoRequest req = new HCService.PaymentInfoRequest();
-            req.MerchantID = "935839278044253";
-            req.Password = "Rz%9NqTDGDcwxcMQ";
-            req.PaymentID = PaymentID;
-            var resp = client.VerifyPayment(req);
+            //HCService.HCServiceSoapClient client = new HCService.HCServiceSoapClient();
+            //HCService.PaymentInfoRequest req = new HCService.PaymentInfoRequest();
+            //req.MerchantID = "935839278044253";
+            //req.Password = "Rz%9NqTDGDcwxcMQ";
+            //req.PaymentID = PaymentID;
+            //var resp = client.VerifyPayment(req);
 
-            //return View(resp);
-
-            Response.Clear();
-            Response.Write("<html><head>");
-            Response.Write("</head><body>");
-            Response.Write("<h1>");
-            Response.Write("Testing is Completed - Show your other info here.");
-            Response.Write("</h1>");
-            Response.Write("</body></html>");
-            Response.End();
-
+            ViewData["PaymentID"] = PaymentID;
+            ViewData["ReturnCode"] = ReturnCode;
+            ViewData["ReturnMessage"] = ReturnMessage;
+            return View();           
         }
 
 

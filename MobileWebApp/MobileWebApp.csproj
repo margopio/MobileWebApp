@@ -344,6 +344,7 @@
     <Content Include="Views\GCMSenders\Index.cshtml" />
     <None Include="Service References\HCService\hcservice.wsdl" />
     <Content Include="Views\Home\Cancel.cshtml" />
+    <Content Include="Views\Home\Complete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
