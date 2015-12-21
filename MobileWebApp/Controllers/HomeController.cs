@@ -81,6 +81,7 @@ namespace MobileWebApp.Controllers
 
         public void Buy()
         {
+            string restaurant = Request.QueryString["restaurant"];
             string firstName = Request.QueryString["firstName"];
             string lastName = Request.QueryString["lastName"];
             
@@ -117,7 +118,7 @@ namespace MobileWebApp.Controllers
                 Response.Write("<html><head>");
                 Response.Write("</head><body onload=\"document.frmCheckout.submit()\">");
                 Response.Write("<h1>Mercury Pay Redirect Page</h1>");
-                Response.Write("<h4>Put loading indicator here when needed</h4>");
+                Response.Write("<h4>Put loading indicator here if needed</h4>");
                 Response.Write("<h2>Please wait...You're being redirected to Mercury Pay</h2>");
                 Response.Write("<form name=\"frmCheckout\" method=\"Post\" action=\"" + hostedCheckoutURL + "\">");
                 Response.Write("<input name=\"PaymentID\" type=\"hidden\" value=\"" + resp.PaymentID + "\">");
