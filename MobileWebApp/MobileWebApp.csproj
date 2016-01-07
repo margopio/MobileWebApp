@@ -274,6 +274,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PushNotifications\GroupDispatcher.cs" />
     <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\AddProfile.cs" />
     <Compile Include="Models\AddRegistration.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Models\InMemoryUserRegister.cs" />
     <Compile Include="Models\IUserRegisterRepository.cs" />
     <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Models\PushNotifications\User.cs" />
     <Compile Include="Models\Reward.cs" />
     <Compile Include="Models\RewardPlanRepository.cs" />
     <Compile Include="Models\RewardRepository.cs" />
