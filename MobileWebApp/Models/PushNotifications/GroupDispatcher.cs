@@ -29,9 +29,9 @@ namespace MobileWebApp.Models.PushNotifications
             Clients = clients;
             
             // Fire the timer every second.
-            _timer1 = new Timer(UpdateTime1, null, 0, 30000);
-            _timer2 = new Timer(UpdateTime2, null, 0, 40000);
-            _timer3 = new Timer(UpdateTime3, null, 0, 50000);
+            _timer1 = new Timer(UpdateTime1, null, 0, 15000);
+            _timer2 = new Timer(UpdateTime2, null, 0, 20000);
+            _timer3 = new Timer(UpdateTime3, null, 0, 30000);
            
         } 
         
