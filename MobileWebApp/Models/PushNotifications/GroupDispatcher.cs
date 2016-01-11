@@ -16,9 +16,10 @@ namespace MobileWebApp.Models.PushNotifications
             () => new GroupDispatcher(GlobalHost.ConnectionManager.GetHubContext<EchoHub>().Clients));
 
         private readonly ConcurrentDictionary<string, User> _users = new ConcurrentDictionary<string, User>();
-        private readonly Timer _timer1;
-        private readonly Timer _timer2;
-        private readonly Timer _timer3;
+        private readonly Timer _timer;
+        //private readonly Timer _timer1;
+        //private readonly Timer _timer2;
+        //private readonly Timer _timer3;
 
         /// <summary>
         /// Constructor.
@@ -29,11 +30,42 @@ namespace MobileWebApp.Models.PushNotifications
             Clients = clients;
             
             // Fire the timer every second.
-            _timer1 = new Timer(UpdateTime1, null, 0, 15000);
-            _timer2 = new Timer(UpdateTime2, null, 0, 20000);
-            _timer3 = new Timer(UpdateTime3, null, 0, 25000);
+            _timer = new Timer(UpdateTime, null, 0, 10000);
+            //_timer1 = new Timer(UpdateTime1, null, 0, 15000);
+            //_timer2 = new Timer(UpdateTime2, null, 0, 20000);
+            //_timer3 = new Timer(UpdateTime3, null, 0, 25000);
            
-        } 
+        }
+
+        /// <summary>
+        /// Broadcast to all the current time.
+        /// </summary>
+        /// <param name="state"></param>
+        private void UpdateTime(object state)
+        {
+            int now = DateTime.Now.Second;
+            if (now >= 20 && now < 30)
+            {                
+                Clients.Group("1001").broadcastTime(CurrentTime2);
+            }
+            else if (now >= 30 && now < 40)
+            {
+                Clients.Group("1002").broadcastTime(CurrentTime3);
+            }
+            else if (now >= 40 && now < 50)
+            {
+                Clients.Group("1001").broadcastTime(CurrentTime2);
+            }
+            else if (now >= 50 && now < 60)
+            {
+                Clients.Group("1002").broadcastTime(CurrentTime3);
+            }           
+            else
+            {
+                Clients.All.broadcastTime(CurrentTime1);
+            }
+                        
+        }
         
         /// <summary>
         /// Broadcast to all the current time.
