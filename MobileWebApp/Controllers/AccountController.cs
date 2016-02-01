@@ -27,10 +27,10 @@ namespace MobileWebApp.Controllers
         [Route("~/api/Account/register")]
         public HttpResponseMessage Register(AddRegistration model)
         {            
-            if (!MembershipCardsRepository.Responses.Any(x => x.MemberCardNo == model.CardNo))
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);    
-            }
+            //if (!MembershipCardsRepository.Responses.Any(x => x.MemberCardNo == model.CardNo))
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);    
+            //}
 
             AddRegistration userRegisterTo = new AddRegistration();
             userRegisterTo.UserId = Guid.NewGuid();
