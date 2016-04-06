@@ -1,0 +1,26 @@
+﻿<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h4>Loading...Please wait!</h4>
+        
+        <div name="heading">Testing</div>
+
+        <form name="frmCheckout" method="Post" action="http://localhost:4094/Home/TestForm">
+            <input name="PaymentID" type="hidden" value="testing1" />
+        </form>
+
+        <script>            
+            var div = document.getElementsByName('heading')[0];            
+            div.innerHTML = "Paragraph changed!";
+
+            var input = document.getElementsByName('PaymentID')[0];
+            input.value = "testing2";
+
+            var form = document.getElementsByName('frmCheckout')[0];
+            form.submit();
+        </script>
+
+    </body>
+</html>
