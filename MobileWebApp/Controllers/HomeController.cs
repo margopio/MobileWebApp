@@ -82,6 +82,7 @@ namespace MobileWebApp.Controllers
         public void TestForm()
         {
             string paymentId = Request.Form["PaymentID"];
+            ViewData["PaymentID"] = Request.Form["PaymentID"];
         }
 
         public void Buy()

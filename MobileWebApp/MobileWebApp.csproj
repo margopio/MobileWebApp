@@ -348,6 +348,7 @@
     <None Include="Service References\HCService\hcservice.wsdl" />
     <Content Include="Views\Home\Cancel.cshtml" />
     <Content Include="Views\Home\Complete.cshtml" />
+    <Content Include="Views\Home\TestForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
