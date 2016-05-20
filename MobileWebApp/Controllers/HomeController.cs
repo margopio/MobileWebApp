@@ -79,10 +79,11 @@ namespace MobileWebApp.Controllers
             return View(userRegisterViewModel);
         }
 
-        public void TestForm()
+        public ActionResult TestForm()
         {
             string paymentId = Request.Form["PaymentID"];
             ViewData["PaymentID"] = Request.Form["PaymentID"];
+            return View();   
         }
 
         public void Buy()
